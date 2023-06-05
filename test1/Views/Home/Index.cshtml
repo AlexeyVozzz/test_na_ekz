@@ -1,0 +1,54 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<h2>Студент</h2>
+
+
+<form method="post" action="@Url.Action("Save_u", "Home")">
+    <div>
+        <label>Фамилия:</label>
+        <p></p>
+        @Html.TextBoxFor(model => model.s_name)
+    </div>
+    <p></p>
+    <div> <!-- Добавьте открывающий тег <div> -->
+        <label>Имя:</label>
+        <p></p>
+        @Html.TextBoxFor(model => model.name)
+    </div>
+
+    <!-- Другие поля модели -->
+    <p></p>
+    <button type="submit" id="submitButton" disabled>Сохранить</button>
+</form>
+
+
+<script>
+    // Получаем ссылки на поля ввода и кнопку сохранения
+    const sNameInput = document.getElementById('s_name');
+    const nameInput = document.getElementById('name');
+    const submitButton = document.getElementById('submitButton');
+
+    // Функция для проверки заполненности полей
+    function checkInputs() {
+        // Проверяем, заполнены ли оба поля
+        const sNameFilled = sNameInput.value.trim() !== '';
+        const nameFilled = nameInput.value.trim() !== '';
+
+        // Включаем или выключаем кнопку в зависимости от заполненности полей
+        submitButton.disabled = !(sNameFilled && nameFilled);
+    }
+
+    // Обработчики событий для полей ввода
+    sNameInput.addEventListener('input', checkInputs);
+    nameInput.addEventListener('input', checkInputs);
+</script>
+
+
+
+
+
